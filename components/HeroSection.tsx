@@ -1,135 +1,181 @@
 'use client';
 
-import { useState } from 'react';
+import CardFrame from '@/components/layout/CardFrame';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
+import { ChevronRight, Users, Sparkles } from 'lucide-react';
+import CarouselLayout from './layout/CarouselLayout';
+
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1
+    }
+  }
+};
+
+// Button configuration
+const buttons = [
+  {
+    label: 'Read Our Story',
+    onClick: 'scrollToStory' as const,
+    variant: 'primary',
+    icon: ChevronRight
+  },
+  {
+    label: 'Meet the Women',
+    onClick: undefined,
+    variant: 'accent',
+    icon: Users
+  },
+  {
+    label: 'Join the Movement',
+    onClick: undefined,
+    variant: 'secondary',
+    icon: Sparkles
+  }
+] as const;
+
+const contentList = [
+  {
+    backgroundImage: '/obaaSIWA.jpg',
+    headline: 'When the Clouds Speak, <>She Listens</>',
+    subheadline: 'Meet the women farmers of Ghana who are teaching artificial intelligence to understand the language of nature—and transforming climate resilience for rural Africa in the process.',
+    ctas: [
+      { label: 'Read Our Story', onClick: 'scrollToStory' as const, variant: 'primary', icon: ChevronRight },
+      { label: 'Meet the Women', onClick: undefined, variant: 'accent', icon: Users },
+      { label: 'Join the Movement', onClick: undefined, variant: 'secondary', icon: Sparkles }
+    ]
+  },
+  {
+    backgroundImage: '/obaaSIWA.jpg',
+    headline: 'Empowering Farmers, <>One Forecast at a Time</>',
+    subheadline: 'Discover how SIWA leverages indigenous knowledge and cutting-edge AI to deliver accurate, climate-smart weather forecasts tailored for smallholder farmers in Ghana.',
+    ctas: [
+      { label: 'Read Our Story', onClick: 'scrollToStory' as const, variant: 'primary', icon: ChevronRight },
+      { label: 'Meet the Women', onClick: undefined, variant: 'accent', icon: Users },
+      { label: 'Join the Movement', onClick: undefined, variant: 'secondary', icon: Sparkles }
+    ]
+  },
+  {
+    backgroundImage: '/obaaSIWA.jpg',
+    headline: 'Bridging Tradition and Technology for <>Climate Resilience</>',
+    subheadline: 'Explore how SIWA combines the wisdom of Ghanaian women farmers with advanced AI to create a revolutionary weather app that supports sustainable agriculture and food security.',
+    ctas: [
+      { label: 'Read Our Story', onClick: 'scrollToStory' as const, variant: 'primary', icon: ChevronRight },
+      { label: 'Meet the Women', onClick: undefined, variant: 'accent', icon: Users },
+      { label: 'Join the Movement', onClick: undefined, variant: 'secondary', icon: Sparkles }
+    ]
+  }
+];
+
+const buttonStyles = {
+  primary: 'bg-(--color-primary) text-(--color-primary-dark)',
+  accent: 'bg-(--color-accent) text-(--color-accent-dark)',
+  secondary: 'bg-(--color-accent-warm) text-(--color-accent-warm-dark)',
+} as const;
 
 export default function HeroSection() {
-  // Initialize as true to avoid hydration issues
-  const [isVisible, setIsVisible] = useState(false);
-
-  // Use setTimeout to trigger animation after mount
-  if (typeof window !== 'undefined' && !isVisible) {
-    setTimeout(() => setIsVisible(true), 100);
-  }
-
   const scrollToStory = () => {
-    const storySection = document.getElementById('story');
-    if (storySection) {
-      storySection.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById('story')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleButtonClick = (onClick?: string) => {
+    if (onClick === 'scrollToStory') scrollToStory();
   };
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Banner Image */}
-      <Image
-        src="/obaaSIWA.jpg"
-        alt="ObaaSIWA - Women farmers and nature"
-        fill
-        className="object-cover brightness-50"
-        priority
-      />
+    <div className="">
+      <CarouselLayout>
+        {
+          contentList.map((content, index) => (
+            <div key={index} className="shrink-0">
+              <CardFrame>
+                <section className="relative w-full min-h-fit flex items-center justify-center overflow-hidden">
+                  {/* Background Banner Image */}
+                  <Image
+                    src={content.backgroundImage}
+                    alt={content.headline}
+                    fill
+                    className="object-cover object-top brightness-50"
+                    priority
+                  />
 
-      {/* Overlay Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
-        <div className="text-center">
-          {/* Logo */}
-          <div className="mb-8 sm:mb-10 flex justify-center">
-            <Image
-              src="/logo-full.png"
-              alt="ObaaSIWA Full Logo"
-              width={300}
-              height={120}
-              className={`h-24 sm:h-32 w-auto transition-all duration-1000 ${
-                isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-              }`}
-              priority
-            />
-          </div>
+                  {/* Overlay Content */}
+                  <motion.div 
+                    className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32"
+                    initial="hidden"
+                    animate="visible"
+                    variants={staggerContainer}
+                  >
+                    <div className="text-center">
+                      {/* Main Headline */}
+                      <motion.h1 
+                        className="font-(--font-papyrus) text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white mb-6 sm:mb-8 drop-shadow-lg"
+                        variants={fadeInUp}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                      >
+                        {content.headline.split('<>').map((part, idx) => 
+                          part.includes('</>') ? (
+                            <motion.span key={idx} className="text-amber-100" variants={fadeInUp} transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}>
+                              {part.replace('</>', '')}
+                            </motion.span>
+                          ) : (
+                            <span key={idx}>{part}</span>
+                          )
+                        )}
+                        <br />
+                        {content.headline.includes('<>') && content.headline.split('<>').length % 2 === 0 && (<br />)}
+                      </motion.h1>
 
-          {/* Main Headline */}
-          <h1 
-            className={`font-(--font-papyrus) text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mb-6 sm:mb-8 transition-all duration-1000 drop-shadow-lg ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
-            When the Clouds Speak,
-            <br />
-            <span className="text-amber-100">She Listens</span>
-          </h1>
+                      {/* Subheadline */}
+                      <motion.p 
+                        className="font-(--font-poppins) text-sm lg:text-xl text-gray-100 max-w-4xl mx-auto mb-8 sm:mb-10 leading-relaxed drop-shadow-md"
+                        variants={fadeInUp}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                      >
+                        {content.subheadline}
+                      </motion.p>
 
-          {/* Subheadline */}
-          <p 
-            className={`font-(--font-poppins) text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-100 max-w-4xl mx-auto mb-8 sm:mb-10 leading-relaxed transition-all duration-1000 delay-200 drop-shadow-md ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
-            Meet the women farmers of Ghana who are teaching artificial intelligence to understand the language of nature—and transforming climate resilience for rural Africa in the process.
-          </p>
-
-          {/* Hero Narrative */}
-          <div 
-            className={`bg-(--color-surface) border-l-4 border-primary rounded-lg p-6 sm:p-8 md:p-10 max-w-4xl mx-auto mb-10 sm:mb-12 shadow-lg transition-all duration-1000 delay-400 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
-            <blockquote className="font-(--font-poppins) text-base sm:text-lg md:text-xl text-foreground italic leading-relaxed">
-              &ldquo;For generations, we watched the <span className="text-primary font-semibold not-italic">Kakapenpen tree</span>. When new leaves appeared, we knew the rains were coming. We observed the termites&rsquo; nuptial flight, the color of evening clouds, the behavior of birds returning home. Our mothers taught us, and their mothers before them. But the climate is changing. The signs we trusted are becoming unreliable. Now, we are <span className="text-primary font-semibold not-italic">teaching the machines</span> what we know, and they are helping us understand what has changed.&rdquo;
-            </blockquote>
-            <cite className="block mt-4 sm:mt-6 text-sm sm:text-base text-foreground not-italic font-medium">
-              &mdash; A woman farmer from the Pra River Basin
-            </cite>
-          </div>
-
-          {/* Call-to-Action Buttons */}
-          <div 
-            className={`flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 transition-all duration-1000 delay-600 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
-            <button 
-              onClick={scrollToStory}
-              className="group px-8 py-4 bg-primary text-white font-semibold text-base sm:text-lg rounded-full hover:bg-(--color-primary-dark) transition-all shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2 w-full sm:w-auto justify-center"
-            >
-              Read Our Story
-              <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-            
-            <button className="group px-8 py-4 bg-(--color-accent) text-white font-semibold text-base sm:text-lg rounded-full hover:bg-(--color-accent-warm) transition-all shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2 w-full sm:w-auto justify-center">
-              Meet the Women
-            </button>
-            
-            <button className="group px-8 py-4 border-2 border-white text-white font-semibold text-base sm:text-lg rounded-full hover:bg-white hover:text-primary transition-all transform hover:scale-105 flex items-center gap-2 w-full sm:w-auto justify-center">
-              Join the Movement
-            </button>
-          </div>
-
-          {/* Scroll Indicator */}
-          <div 
-            className={`mt-16 sm:mt-20 transition-all duration-1000 delay-800 ${
-              isVisible ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <button 
-              onClick={scrollToStory}
-              className="group flex flex-col items-center gap-2 text-gray-200 hover:text-white transition-colors cursor-pointer"
-              aria-label="Scroll to story"
-            >
-              <span className="text-sm font-medium">Discover More</span>
-              <svg 
-                className="w-6 h-6 animate-bounce" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
+                      {/* Call-to-Action Buttons */}
+                      <motion.div 
+                        className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+                        variants={fadeInUp}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                      >
+                        {buttons.map(({ label, onClick, variant, icon: Icon }) => (
+                          <button
+                            key={label}
+                            onClick={() => handleButtonClick(onClick)}
+                            className={cn(
+                              'px-8 py-4 cursor-pointer text-white text-sm rounded-full transition-all shadow-lg hover:shadow-xl flex items-center gap-2 w-full sm:w-auto justify-center',
+                              buttonStyles[variant],
+                              'hover:bg-(--color-secondary-dark) hover:text-white'
+                            )}
+                          >
+                            {label}
+                            <Icon className="size-5 transition-transform" />
+                          </button>
+                        ))}
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                </section>
+              </CardFrame>
+            </div>
+          ))
+        }
+      </CarouselLayout>
+    </div>
   );
 }
