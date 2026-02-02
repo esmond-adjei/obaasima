@@ -68,15 +68,15 @@ const PROGRESS_INTERVAL = 50;
 
 const STATUS_ITEMS: AppMessageType[] = [
   {
-    id: '3',
+    id: '1',
     type: 'image',
     src: '/obaaSIWA.jpg',
-    heading: '<>Digital</> Transformation',
-    subheading: 'Our research targets low-power, reliable communication, and diverse smart device support, aiming to advance technologies.',
+    heading: 'Women Read the <>Climate</> Every Day',
+    subheading: 'Across rural Ghana, women farmers rely on generations of ecological knowledge—cloud movement, wind patterns, plant and animal behavior—to make decisions that sustain families and communities.',
     primaryButtonText: 'Learn More',
     primaryButtonLink: ROUTES.CONTACT,
-    secondaryButtonText: 'Our Research',
-    secondaryButtonLink: ROUTES.researchProjects(),
+    secondaryButtonText: 'Our Story',
+    secondaryButtonLink: '#story',
     order: 0,
     displayType: 'banner'
   },
@@ -84,30 +84,42 @@ const STATUS_ITEMS: AppMessageType[] = [
     id: '2',
     type: 'image',
     src: '/obaaSIWA.jpg',
-    heading: 'AI Safety and <>Security</>',
-    subheading: 'We research on robust, interpretable, and privacy-preserving AI for IoT and edge systems to ensure reliable intelligent services.',    
-    primaryButtonText: 'Projects',
-    primaryButtonLink: ROUTES.researchProjects(),
-    secondaryButtonText: 'Publications',
-    secondaryButtonLink: ROUTES.publications(),
-    order: 0,
+    heading: 'But the Climate Has <>Changed</>',
+    subheading: 'Climate variability has disrupted familiar patterns. Indigenous forecasting is becoming less predictable, while modern climate tools often exclude women\'s realities, languages, and ways of knowing.',    
+    primaryButtonText: 'Explore SIWA',
+    primaryButtonLink: '#siwa',
+    secondaryButtonText: 'The Challenge',
+    secondaryButtonLink: '#impact',
+    order: 1,
+    displayType: 'banner'
+  },
+  {
+    id: '3',
+    type: 'image',
+    src: '/obaaSIWA.jpg',
+    heading: 'What If Women Shaped Climate Intelligence?',
+    subheading: 'ObaaSIWA brings women\'s knowledge into the center of climate decision-making—combining indigenous indicators with AI through SIWA, the Smart Indigenous Weather App.',
+    primaryButtonText: 'See Impact',
+    primaryButtonLink: '#impact',
+    secondaryButtonText: 'About ObaaSIWA',
+    secondaryButtonLink: '#about',
+    order: 2,
     displayType: 'banner'
   },
   {
     id: '4',
     type: 'image',
     src: '/obaaSIWA.jpg',
-    heading: 'IoT & <>Edge</> Intelligence',
-    subheading: 'Advancing distributed IoT platforms and edge computing solutions for next-generation smart systems.',
-    primaryButtonText: 'View Projects',
-    primaryButtonLink: ROUTES.researchProjects(),
-    secondaryButtonText: 'Team',
-    secondaryButtonLink: '/people/team',
-    order: 0,
+    heading: 'From Knowledge Holders to <>Co-Designers</>',
+    subheading: "With the right tools, women don't just receive forecasts. They help decide what data matters, how it is interpreted, and who benefits from it.",
+    primaryButtonText: 'Meet the Women',
+    primaryButtonLink: '#empowerment',
+    secondaryButtonText: 'Join Us',
+    secondaryButtonLink: '#cta',
+    order: 3,
     displayType: 'banner'
   }
 ];
-
 const ANIMATION_VARIANTS = {
   fadeInUp: {
     hidden: { opacity: 0, y: 40 },
@@ -329,7 +341,7 @@ const ContentOverlay: React.FC<ContentOverlayProps> = ({ item, isActive }) => {
         <div className="text-center space-y-3 md:space-y-6">
           {/* Headline */}
           <motion.h1 
-            className="font-serif text-4xl md:text-5xl xl:text-6xl text-white drop-shadow-lg"
+            className="font-serif text-4xl md:text-5xl xl:text-6xl text-white drop-shadow-lg leading-21"
             variants={ANIMATION_VARIANTS.fadeInUp}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
@@ -566,7 +578,7 @@ const BannerSection: React.FC<BannerSectionProps> = ({
                   className="h-[80vh]"
                 >
                   <CardFrame
-                    className="h-full w-full cursor-pointer"
+                    className="h-full w-full cursor-grab"
                     onClick={isActive ? togglePlayPause : undefined}
                   >
                     <section className="relative w-full h-full flex items-center justify-center">

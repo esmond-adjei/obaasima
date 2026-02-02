@@ -41,8 +41,8 @@ export function Logo(
     <div className="hcc flex-col">
       <CustomIcon
         className={cn("inline-block",
-          size === "large" ? "lg:size-24 size-18" :
-          size === "medium" ? "lg:size-18 size-12" :
+          size === "large" ? "lg:size-18 size-16" :
+          size === "medium" ? "lg:size-16 size-12" :
           size === "small" ? "lg:size-12 size-6" : ""
         )}
         style={{ fill: colorVariable }}
