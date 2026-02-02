@@ -1,16 +1,18 @@
 import Header from "@/components/Header";
-import HeroSection from "@/components/HeroSection";
-import BannerSection from "@/components/layout/BannerSection";
+import BannerSection from "@/components/BannerSection";
+import AboutSection from "@/components/AboutSection";
+import StatisticsSection from "@/components/StatisticsSection";
 
 export default function Home() {
   return (
     <main className="relative min-h-100vh bg-(--color-primary)">
       <header className="relative w-full space-y-6">
         <Header />
-        {/* <HeroSection /> */}
-      <BannerSection />
+        <BannerSection />
       </header>
-        
+      
+      <AboutSection />
+      <StatisticsSection />
       {/* Placeholder for next sections */}
       <section id="story" className="min-h-screen flex items-center justify-center">
         <div className="text-center">

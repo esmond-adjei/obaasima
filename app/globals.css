@@ -7,7 +7,7 @@
   /* Primary color palette - earthy warm tones */
   --color-primary: oklch(0.8199 0.0459 93.15);
   --color-primary-light: oklch(96.007% 0.01869 83.024);
-  --color-primary-dark: oklch(54.853% 0.07154 92.16);
+  --color-primary-dark: oklch(57.382% 0.09171 118.615);
 
   /* Secondary color palette - deep earth tones */
   --color-secondary: oklch(20% 0.04 300);
@@ -17,8 +17,8 @@
   /* Accent colors - nature inspired */
   --color-accent: oklch(65% 0.15 135);
   --color-accent-dark: oklch(42.927% 0.12351 137.054);
-  --color-accent-warm: oklch(70% 0.12 55);
-  --color-accent-warm-dark: oklch(50% 0.10 60);
+  --color-accent-warm: oklch(50.417% 0.11954 31.531);
+  --color-accent-warm-dark: oklch(29.87% 0.07224 36.869);
 
   /* Light mode - Primary themed */
   --color-background: var(--color-primary);
@@ -46,8 +46,8 @@
   --popover-foreground: oklch(0.147 0.004 49.25);
   --primary: oklch(0.216 0.006 56.043);
   --primary-foreground: oklch(0.985 0.001 106.423);
-  --secondary: oklch(0.97 0.001 106.424);
-  --secondary-foreground: oklch(0.216 0.006 56.043);
+  --secondary: var(--color-secondary);
+  --secondary-foreground: var(--color-primary);
   --muted: oklch(0.97 0.001 106.424);
   --muted-foreground: oklch(0.553 0.013 58.071);
   --accent: oklch(0.97 0.001 106.424);
@@ -120,7 +120,7 @@ button, a {
   cursor: pointer;
 }
 
-::selection {
+::selection, .highlight {
     background: var(--color-secondary);
     color: var(--color-background);
 }
