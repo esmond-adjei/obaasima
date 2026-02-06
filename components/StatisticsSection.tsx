@@ -88,14 +88,12 @@ const ANIMATION_VARIANTS = {
 
 interface OdometerNumberProps {
   value: number;
-  duration?: number;
   prefix?: string;
   suffix?: string;
 }
 
 const OdometerNumber: React.FC<OdometerNumberProps> = ({
   value,
-  duration = 2,
   prefix = '',
   suffix = ''
 }) => {
@@ -145,7 +143,6 @@ const StatisticCard: React.FC<StatisticCardProps> = ({ statistic }) => {
       <div className="text-5xl sm:text-6xl lg:text-7xl font-bold text-(--color-accent-warm) tabular-nums">
         <OdometerNumber
           value={statistic.value}
-          duration={statistic.duration}
           prefix={statistic.prefix}
           suffix={statistic.suffix}
         />

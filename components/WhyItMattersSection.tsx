@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { easeOut } from 'framer-motion';
-import { AlertCircle, Users, TrendingDown, Smartphone } from 'lucide-react';
+import { AlertCircle, Users, TrendingDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // ============================================================================

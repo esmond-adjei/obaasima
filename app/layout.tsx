@@ -39,12 +39,12 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'SIWA - Smart Indigenous Weather App',
-    template: '%s | SIWA',
+    default: 'ObaaSIWA - Women-Centered Climate Intelligence',
+    template: '%s | ObaaSIWA',
   },
-  description: 'SIWA combines traditional ecological knowledge with AI to provide climate-smart weather forecasting for Ghanaian farmers.',
-  keywords: [ 'SIWA', 'Smart Indigenous Weather App', 'Climate Resilience', 'Agriculture', 'Ghana', 'Weather Forecasting', 'AI', 'Indigenous Knowledge', 'Smallholder Farmers' ],
-  authors: [{ name: 'DIPPER Lab Team' }],
+  description: 'ObaaSIWA is a women-centered climate intelligence initiative that integrates indigenous ecological knowledge with responsible AI to support better agricultural decision-making in Ghana.',
+  keywords: [ 'ObaaSIWA', 'SIWA', 'Climate Resilience', 'Women Farmers', 'Ghana', 'Indigenous Knowledge', 'AI', 'Weather Forecasting', 'Agriculture', 'Climate Intelligence' ],
+  authors: [{ name: 'DIPPER Lab' }],
   robots: 'index, follow',
 };
 
