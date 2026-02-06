@@ -30,30 +30,30 @@ interface StatisticsSectionProps {
 const DEFAULT_STATISTICS: Statistic[] = [
   {
     id: '1',
-    value: 50,
-    suffix: '+',
-    description: 'Research Projects',
+    value: 70,
+    suffix: '%',
+    description: 'Food Production by Women',
     duration: 2
   },
   {
     id: '2',
-    value: 100,
-    suffix: '+',
-    description: 'Publications',
+    value: 8,
+    suffix: '%',
+    description: 'Land Ownership',
     duration: 2.2
   },
   {
     id: '3',
-    value: 25,
-    suffix: '+',
-    description: 'Research Partners',
+    value: 10,
+    suffix: '%',
+    description: 'Credit Access',
     duration: 2.4
   },
   {
     id: '4',
-    value: 15,
-    suffix: '+',
-    description: 'Years of Excellence',
+    value: 30,
+    suffix: '%',
+    description: 'Less Likely to Own a Phone',
     duration: 2.6
   }
 ];
@@ -88,14 +88,12 @@ const ANIMATION_VARIANTS = {
 
 interface OdometerNumberProps {
   value: number;
-  duration?: number;
   prefix?: string;
   suffix?: string;
 }
 
 const OdometerNumber: React.FC<OdometerNumberProps> = ({
   value,
-  duration = 2,
   prefix = '',
   suffix = ''
 }) => {
@@ -145,7 +143,6 @@ const StatisticCard: React.FC<StatisticCardProps> = ({ statistic }) => {
       <div className="text-5xl sm:text-6xl lg:text-7xl font-bold text-(--color-accent-warm) tabular-nums">
         <OdometerNumber
           value={statistic.value}
-          duration={statistic.duration}
           prefix={statistic.prefix}
           suffix={statistic.suffix}
         />

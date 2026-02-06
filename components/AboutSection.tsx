@@ -25,13 +25,9 @@ interface AboutSectionProps {
 
 const DEFAULT_CONTENT = {
   imageSrc: '/obaaSIWA.jpg',
-  imageAlt: 'ObaaSIWA',
+  imageAlt: 'ObaaSIWA - Women farmers in Ghana',
   title: 'About <>ObaaSIWA</>',
-  body: `ObaaSIWA is dedicated to advancing the frontiers of IoT, Edge Intelligence, and AI Safety. 
-  Our research focuses on creating robust, reliable, and privacy-preserving intelligent systems 
-  that <>empower communities</> and drive technological innovation. Through interdisciplinary collaboration 
-  and cutting-edge research, we aim to bridge the gap between theoretical advances and practical 
-  applications in smart systems and digital transformation.`
+  body: `ObaaSIWA is a <>women-centered climate intelligence</> initiative that integrates indigenous ecological knowledge with responsible artificial intelligence to support better agricultural decision-making. Built in Ghana, ObaaSIWA recognizes women farmers not as passive users of technology, but as <>co-designers and community stewards</> of climate data systems. At the heart of the initiative is SIWA, a mobile application that gives farmers access to localized forecasts through the validated indigenous ecological indicators, providing accessible weather insights for their communities.`
 };
 
 const ANIMATION_VARIANTS = {
